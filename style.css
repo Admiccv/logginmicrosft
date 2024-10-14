@@ -1,0 +1,309 @@
+/* Aplica el box-sizing a todos los elementos, asegurando que el padding y el borde se incluyan en las dimensiones totales */
+* {
+    box-sizing: border-box;
+    margin: 0; /* Elimina márgenes predeterminados */
+    padding: 0; /* Elimina padding predeterminado */
+}
+
+/* Establece el estilo básico para la página */
+html, body {
+    height: 100%; /* Asegura que la página ocupe todo el alto de la ventana */
+    font-family: 'Montserrat', sans-serif; /* Fuente predeterminada */
+    font-size: 16px; /* Tamaño de fuente base */
+}
+
+/* Estilo del body */
+body {
+    display: flex;
+    flex-direction: column; /* Organiza los elementos en una columna */
+    align-items: center; /* Centra horizontalmente el contenido */
+    justify-content: center; /* Centra verticalmente el contenido */
+    padding: 20px; /* Espaciado interno alrededor del contenido */
+    background: linear-gradient(to bottom right, #ffffff, #dbecf1, #fce8e4); /* Fondo con un difuminado de colores */
+    background-repeat: no-repeat; /* Evita que el fondo se repita */
+    background-size: cover; /* Asegura que el fondo cubra toda el área visible */
+    background-attachment: fixed; /* Mantiene el fondo fijo al hacer scroll */
+    margin: 0; /* Elimina márgenes predeterminados */
+}
+
+/* Estilo del título "Outlook" */
+.Outlook {
+    font-size: 50px; /* Tamaño de la fuente del título */
+    font-weight: bold; /* Hace que el título sea negrita */
+    margin-bottom: 20px; /* Espaciado inferior */
+    position: absolute; /* Posiciona el título de forma absoluta */
+    top: 20px; /* Distancia desde el borde superior */
+}
+
+/* Estilo del contenedor principal */
+.container {
+    position: relative; /* Define el contenedor como el punto de referencia */
+    text-align: center; /* Centra el texto horizontalmente */
+    width: 40%; /* Establece el ancho del contenedor */
+    padding: 20px; /* Espacio interno */
+    margin: auto; /* Centra el contenedor horizontalmente */
+    display: flex;
+    flex-direction: column; /* Organiza los hijos en una columna */
+    align-items: center; /* Centra los elementos dentro del contenedor */
+    height: 430px; /* Establece una altura fija */
+}
+
+/* Estilo del logo de Microsoft */
+.logo {
+    max-width: 100px; /* Ajusta el tamaño del logo */
+    margin-bottom: 0px; /* Espaciado inferior del logo */
+}
+
+/* Estilo del contenedor de inicio de sesión */
+.sign-in-box {
+    position: relative; /* Establece el contenedor como referencia para el posicionamiento absoluto */
+    background-color: #ffffff; /* Color de fondo del cuadro */
+    padding: 50px; /* Espacio interno del cuadro */
+    border: none; /* Elimina bordes */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra del cuadro */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 1000px; /* Ancho máximo */
+    text-align: left; /* Alinea el texto a la izquierda */
+    height: 500px; /* Altura fija del cuadro */
+}
+
+/* Añade una pequeña punta triangular al cuadro */
+.sign-in-box::before {
+    content: ""; /* Pseudo-elemento vacío */
+    position: absolute;
+    top: -15px; /* Posición superior, ajusta según la altura que sobresalga */
+    left: 50%; /* Centra la punta horizontalmente */
+    transform: translateX(-50%); /* Ajusta la posición horizontal de la punta */
+    width: 0px; /* Ancho de la punta */
+    height: 15px; /* Altura de la punta */
+    background-color: #ffffff; /* Color de fondo del contenedor */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para la punta */
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%); /* Define la forma triangular */
+}
+
+/* Estilo de los encabezados dentro del cuadro de inicio de sesión */
+.sign-in-box h2 {
+    margin: 0;
+    margin-bottom: 10px; /* Espaciado inferior */
+    font-size: 1.4rem; /* Tamaño de la fuente */
+    font-weight: 600; /* Peso de la fuente */
+}
+
+/* Estilo de los párrafos dentro del cuadro de inicio de sesión */
+.sign-in-box p {
+    margin: 0;
+    margin-bottom: 20px; /* Espaciado inferior */
+    font-size: 1rem; /* Tamaño de la fuente */
+}
+
+/* Estilo del formulario dentro del cuadro de inicio de sesión */
+.sign-in-box form {
+    display: flex;
+    flex-direction: column; /* Organiza los elementos del formulario en columna */
+}
+
+/* Estilo del grupo de formularios */
+.form-group {
+    margin-bottom: 20px; /* Espaciado inferior */
+    position: relative; /* Permite posicionar el ícono de ojo en relación a este contenedor */
+    display: flex; /* Organiza el campo de entrada y el ícono en una fila */
+    align-items: center; /* Centra verticalmente el contenido */
+}
+
+/* Estilo del campo de entrada del formulario */
+input[type="password"], input[type="text"], input[type="email"] {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 10px; /* Espacio interno */
+    border: none; /* Elimina los bordes predeterminados */
+    border-bottom: 2px solid #0078d4; /* Línea en la parte inferior del campo */
+    border-radius: 0; /* Elimina los bordes redondeados */
+    font-size: 1rem; /* Tamaño de la fuente */
+    box-sizing: border-box; /* Incluye el padding en el ancho total */
+    outline: none; /* Elimina el contorno predeterminado al enfocar */
+    padding-right: 40px; /* Espacio interno adicional a la derecha para el ícono del ojo */
+}
+
+/* Estilo del campo de entrada cuando está enfocado */
+input[type="password"]:focus, input[type="text"]:focus, input[type="email"]:focus {
+    border-bottom: 2px solid #005a9e; /* Color de la línea inferior cuando está enfocado */
+}
+
+/* Estilo del ícono de ojo para mostrar/ocultar la contraseña */
+.eye-icon {
+    position: absolute; /* Posiciona el ícono absolutamente dentro del contenedor del campo de entrada */
+    right: 10px; /* Espaciado desde el borde derecho */
+    top: 50%; /* Centra verticalmente */
+    transform: translateY(-50%); /* Ajusta la posición vertical del ícono */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el ícono */
+    color: #0078d4; /* Color del ícono */
+    z-index: 1; /* Asegura que el ícono esté por encima del campo de entrada */
+}
+
+/* Estilo del botón de "Next" */
+.btn-next {
+    background-color: #0078d4; /* Color de fondo del botón */
+    color: #ffffff; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    padding: 10px 50px; /* Espacio interno */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    position: absolute; /* Posicionamiento absoluto respecto al contenedor */
+    bottom: 70px; /* Espaciado desde el borde inferior */
+    right: 50px; /* Espaciado desde el borde derecho */
+}
+
+/* Estilo del enlace "No account? Create one!" */
+.no-account {
+    position: absolute; /* Posiciona el enlace dentro del contenedor */
+    bottom: 150px; /* Espaciado desde el borde inferior del contenedor */
+    left: 50px; /* Espaciado desde el borde izquierdo del contenedor */
+    margin: 0; /* Elimina márgenes predeterminados */
+    text-align: left; /* Alinea el texto a la izquierda */
+    display: block; /* Asegura que el enlace se muestre como bloque */
+    z-index: 1; /* Asegura que el enlace esté debajo del botón "Next" */
+}
+
+/* Estilo del botón primario de "Iniciar sesión" */
+.btn-primary {
+    background-color: #0078d4; /* Color de fondo del botón */
+    color: #ffffff; /* Color del texto del botón */
+    border: none; /* Elimina el borde */
+    padding: 10px; /* Espacio interno */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    position: absolute; /* Posiciona el botón de forma absoluta dentro del contenedor */
+    bottom: 50px; /* Espaciado desde el borde inferior del contenedor */
+    right: 50px; /* Espaciado desde el borde derecho del contenedor */
+    width: 25%; /* Ancho del botón */
+}
+
+/* Estilo del botón bloque */
+.btn-block {
+    width: 25%; /* Ocupa todo el ancho disponible */
+    padding: 10px; /* Espacio interno */
+}
+
+/* Estilo de los enlaces de "Olvidaste tu contraseña" */
+a {
+    color: #0078d4; /* Color del enlace */
+    text-decoration: none; /* Elimina la subrayado predeterminado */
+    display: inline-block; /* Muestra el enlace en línea, pero permite ajustar el ancho y alto */
+    margin-top: 20px; /* Espaciado superior */
+}
+
+/* Añade subrayado al pasar sobre el enlace */
+a:hover {
+    text-decoration: underline; /* Añade subrayado al pasar sobre el enlace */
+}
+
+/* Estilo del contenedor de opciones adicionales */
+.options-container {
+    display: flex;
+    justify-content: space-between; /* Espacia los elementos equitativamente */
+    align-items: center; /* Centra verticalmente los elementos */
+    margin-top: 10px; /* Espaciado superior */
+}
+
+/* Estilo de los botones de opción */
+.options-container button {
+    background-color: #ffffff; /* Color de fondo del botón */
+    border: 1px solid #0078d4; /* Borde azul */
+    color: #0078d4; /* Color del texto del botón */
+    padding: 10px; /* Espacio interno */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+/* Estilo del contenedor de opciones adicionales cuando está enfocado */
+.options-container button:focus {
+    outline: none; /* Elimina el contorno predeterminado */
+    background-color: #f0f0f0; /* Cambia el color de fondo al hacer clic */
+}
+
+/* Ajustes generales para pantallas de hasta 768px de ancho */
+@media (max-width: 768px) {
+    /* Ajusta el contenedor principal para que no se vuelva demasiado pequeño */
+    .container {
+        width: 95%; /* Ajusta el ancho del contenedor para que se adapte mejor a las pantallas pequeñas */
+        padding: 20px; /* Añade espacio interno */
+        margin: 0 auto; /* Centra el contenedor horizontalmente */
+        position: relative; /* Necesario para posicionar el botón y el enlace dentro del contenedor */
+    }
+
+    /* Ajusta el cuadro de inicio de sesión */
+    .sign-in-box {
+        padding: 20px; /* Espacio interno reducido */
+        height: 330px; /* Permite que la altura se ajuste automáticamente al contenido */
+        box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
+        overflow: hidden; /* Evita que el contenido sobresalga */
+        position: relative; /* Necesario para el posicionamiento absoluto de los elementos internos */
+    }
+
+    /* Estilo del botón "Next" */
+    .btn-next {
+        position: absolute; /* Posiciona el botón dentro del contenedor */
+        bottom: 60px; /* Espaciado desde el borde inferior del contenedor */
+        right: 20px; /* Espaciado desde el borde derecho del contenedor */
+        padding: 10px 50px; /* Añade espacio interno al botón */
+        box-sizing: border-box; /* Incluye padding en el tamaño total */
+        z-index: 2; /* Asegura que el botón esté por encima de otros elementos */
+    }
+
+    /* Estilo del botón primario */
+    .btn-primary {
+        width: 100%; /* Ajusta el botón para ocupar todo el ancho disponible */
+        position: static; /* Elimina el posicionamiento absoluto */
+        margin-top: 10px; /* Añade margen superior para separación */
+    }
+
+    /* Estilo del enlace "No account? Create one!" */
+    .no-account {
+        position: absolute; /* Posiciona el enlace dentro del contenedor */
+        bottom: 120px; /* Espaciado desde el borde inferior del contenedor */
+        left: 20px; /* Espaciado desde el borde izquierdo del contenedor */
+        margin: 0; /* Elimina márgenes predeterminados */
+        text-align: left; /* Alinea el texto a la izquierda */
+        display: block; /* Asegura que el enlace se muestre como bloque */
+        z-index: 1; /* Asegura que el enlace esté debajo del botón "Next" */
+    }
+}
+
+    .Outlook {
+        font-size: 30px; /* Ajusta el tamaño del título */
+        top: 10px; /* Reduce la distancia desde el borde superior */
+    }
+
+    .logo {
+        max-width: 80px; /* Reduce el tamaño máximo del logo */
+    }
+   /* Ajustes para pantallas pequeñas */
+/*  Pestaña de contraseña dispositivo movil */
+@media (max-width: 768px) {
+    .container {
+        width: 95%; /* Ajusta el ancho del contenedor para pantallas pequeñas */
+        padding: 10px; /* Reduce el padding */
+        margin: 0 auto; /* Centra el contenedor horizontalmente */
+    }
+
+    .sign-in-box {
+        padding: 20px; /* Reduce el padding */
+        min-height: 330px; /* Ajusta la altura mínima */
+        position: relative; /* Necesario para el posicionamiento absoluto de los elementos internos */
+    }
+
+    .btn-primary {
+        bottom: 20px; /* Ajusta el espaciado desde el borde inferior */
+        right: 20px; /* Ajusta el espaciado desde el borde derecho */
+        width: 50%; /* Ajusta el ancho del botón */
+        position: absolute; /* Mantiene el posicionamiento absoluto */
+    }
+
+    .forgot-password {
+        bottom: 60px; /* Ajusta el espaciado desde el borde inferior */
+        left: 20px; /* Ajusta el espaciado desde el borde izquierdo */
+        position: absolute; /* Mantiene el posicionamiento absoluto */
+    }
+
+    .privacy-policy {
+        bottom: 90px; /* Ajusta el espaciado desde el borde inferior */
+        left: 20px; /* Ajusta el espaciado desde el borde izquierdo */
+        position: absolute; /* Mantiene el posicionamiento absoluto */
+    }
+}

